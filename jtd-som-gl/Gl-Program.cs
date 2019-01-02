@@ -17,6 +17,8 @@ namespace jtd_som_gl
     class Program
     {
         static String strToken = "";
+
+        // RJL 01/02/2019 - Created jtd-utilities to centralize all settings and common functions
         static jtd_utilities.sql SQL = new jtd_utilities.sql();
 
         static void Main(string[] args)
@@ -110,6 +112,7 @@ namespace jtd_som_gl
                 // Call the Middleware API
                 Gl[] glReturn = glrc.Resource.CreateGl(gls.ToArray());
 
+                // RJL 01/02/2019 - Why did I never close this??
                 glrc.Close();
 
                 jtd_utilities.log.AppendLog("GL Update successful -- " + GlAmount.ToString());

@@ -18,14 +18,14 @@ namespace jtd_utilities
             System.Net.NetworkCredential SmtpUser = new System.Net.NetworkCredential();
 
             Message.From = new MailAddress("5138843612@tmomail.net", "5138843612");
-            //Message.IsBodyHtml = true;
+            Message.IsBodyHtml = true;
 
-            MailAddress toAddress0 = new MailAddress("5138843612@tmomail.net");
+            //MailAddress toAddress0 = new MailAddress("5138843612@tmomail.net");
             //MailAddress toAddress0 = new MailAddress("5133005031@txt.att.net");
             MailAddress toAddress1 = new MailAddress("bob@leroynet.com");
-            //MailAddress toAddress2 = new MailAddress("holly@jtdinc.com");
-            Message.To.Add(toAddress0);
+            MailAddress toAddress2 = new MailAddress("holly@jtdinc.com");
             Message.To.Add(toAddress1);
+            Message.To.Add(toAddress2);
             //Message.To.Add(toAddress2);
             Message.Subject = "SOM Integration Error";
             Message.Body += "\r\n===========================================================";

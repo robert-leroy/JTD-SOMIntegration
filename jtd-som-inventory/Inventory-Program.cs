@@ -21,6 +21,7 @@ namespace jtd_som_inventory
         static void Main(string[] args)
         {
 
+            // RJL 01/02/2019 - Created jtd-utilities to centralize all settings and common functions
             jtd_utilities.log.AppendLog("*** Inventory Processing Log ***");
 
             // Authenticate with the webservice
@@ -147,6 +148,7 @@ namespace jtd_som_inventory
 
                     lineCount++;
                 }
+                // RJL -- 01/02/2019 - Why did you not close this - DUMMY!
                 inventoryAdjustmentResourceClient.Close();
             }
             catch (Exception ex)

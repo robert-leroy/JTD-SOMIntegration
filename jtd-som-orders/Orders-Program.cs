@@ -14,6 +14,8 @@ namespace jtd_som_orders
 
     class Program
     {
+
+        // RJL 01/02/2019 - Created jtd-utilities to centralize all settings and common functions
         static String strToken = "";
         static Int32 totalLines = 0;
         static jtd_utilities.sql SQL = new jtd_utilities.sql();
@@ -220,6 +222,7 @@ namespace jtd_som_orders
                         jtd_utilities.mail.SendEmailMessage(msgText);
                     }
                 }
+                // RJL 01/02/2019 - Why didn't we ever close that
                 orderResourceClient.Close();
             }
             catch (Exception ex)

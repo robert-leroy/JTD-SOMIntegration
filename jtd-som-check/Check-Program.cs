@@ -25,7 +25,7 @@ namespace jtd_som_check
                 {
                     if (lines[a].Contains("TimeoutException"))
                     {
-                        //jtd_utilities.mail.SendEmailMessage("Test from your Dad.  Looks like a timeout.");
+                        jtd_utilities.mail.SendEmailMessage("Test from your Dad.  Looks like a timeout.");
                         jtd_utilities.mail.SendTwilioMessage("JTDSQL02 -- Looks like a timeout. Restarting the Job");
 
                         jtd_utilities.sql SQL = new sql();

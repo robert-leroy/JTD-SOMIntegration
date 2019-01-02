@@ -1,0 +1,17 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="jtd_som_gl.Properties" GeneratedClassName="gl">
+  <Profiles />
+  <Settings>
+    <Setting Name="SqlQueryGlEntry" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	(SELECT MAX(voucher_no)+1 from apinv_hdr) as TransactionNumber
+	, SUM(d.SHPQTY * d.UNTCST) as Amount
+FROM SOM_SomShipmentDetail d
+JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
+WHERE h.INVTYP = 'IV'  and d.WHS = 'OHT'</Value>
+    </Setting>
+    <Setting Name="rootUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://jtdsql02.jtdinc.local:3080/api</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

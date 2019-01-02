@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="jtd_utilities.Properties" GeneratedClassName="sql">
+  <Profiles />
+  <Settings>
+    <Setting Name="connectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=jtdsql02.jtdinc.local;Initial Catalog=p21;User ID=admin;Password=696946</Value>
+    </Setting>
+    <Setting Name="userName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">admin</Value>
+    </Setting>
+    <Setting Name="passWord" Type="System.String" Scope="User">
+      <Value Profile="(Default)">696946</Value>
+    </Setting>
+    <Setting Name="rootUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://jtdsql02.jtdinc.local:3080/api</Value>
+    </Setting>
+    <Setting Name="MailUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bob@leroynet.com</Value>
+    </Setting>
+    <Setting Name="MailPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Futur3W@v3</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

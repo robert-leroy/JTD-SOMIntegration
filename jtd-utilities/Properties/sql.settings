@@ -20,5 +20,8 @@
     <Setting Name="MailPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">Futur3W@v3</Value>
     </Setting>
+    <Setting Name="connectionStringIntegrated" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=jtdsql02.jtdinc.local;Database=P21;Trusted_Connection=yes;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

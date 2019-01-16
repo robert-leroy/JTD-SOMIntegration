@@ -14,12 +14,19 @@ namespace jtd_utilities
     {
         public SqlConnection cnnSQL;
 
-        public void Connect()
+        public void Connect(Boolean UseIntegratedSecurity = false)
         {
             string connetionString = null;
             SqlConnection cnn;
 
-            connetionString = Properties.sql.Default.connectionString;
+            if (UseIntegratedSecurity)
+            {
+                connetionString = Properties.sql.Default.connectionStringIntegrated;
+            }
+            else
+            {
+                connetionString = Properties.sql.Default.connectionString;
+            }
 
             cnn = new SqlConnection(connetionString);
             try
@@ -64,24 +71,36 @@ namespace jtd_utilities
             string folderName = "Subzero Order Management";
             string projectName = "SOM Recover Process";
             string packageName = "SOM Recover Process.dtsx";
+            //string projectName = "SOM Invoice Comments";
+            //string packageName = "SOM Update Invoice Comments.dtsx";
 
-            // Create the Integration Services object
-            IntegrationServices integrationServices = new IntegrationServices(this.cnnSQL);
+            try
+            {
 
-            // Get the Integration Services catalog
-            Catalog catalog = integrationServices.Catalogs["SSISDB"];
+                // Create the Integration Services object
+                IntegrationServices integrationServices = new IntegrationServices(this.cnnSQL);
 
-            // Get the folder
-            CatalogFolder folder = catalog.Folders[folderName];
+                // Get the Integration Services catalog
+                Catalog catalog = integrationServices.Catalogs["SSISDB"];
 
-            // Get the project
-            ProjectInfo project = folder.Projects[projectName];
+                // Get the folder
+                CatalogFolder folder = catalog.Folders[folderName];
 
-            // Get the package
-            PackageInfo package = project.Packages[packageName];
+                // Get the project
+                ProjectInfo project = folder.Projects[projectName];
 
-            // Run the package
-            package.Execute(false, null);
+                // Get the package
+                PackageInfo package = project.Packages[packageName];
+
+                jtd_utilities.log.AppendLog("Restarting Job");
+
+                // Run the package
+                package.Execute(false, null);
+
+            } catch (Exception ex)
+            {
+                jtd_utilities.log.AppendLog("Can't restart job.  Error:" + ex.Message);
+            }
 
             return;
 

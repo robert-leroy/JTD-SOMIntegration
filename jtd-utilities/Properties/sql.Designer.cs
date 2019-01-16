@@ -95,5 +95,17 @@ namespace jtd_utilities.Properties {
                 this["MailPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=jtdsql02.jtdinc.local;Database=P21;Trusted_Connection=yes;")]
+        public string connectionStringIntegrated {
+            get {
+                return ((string)(this["connectionStringIntegrated"]));
+            }
+            set {
+                this["connectionStringIntegrated"] = value;
+            }
+        }
     }
 }

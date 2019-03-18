@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using Ads.Soa.Rest.Security;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.IntegrationServices;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace jtd_utilities
 {
@@ -14,19 +15,12 @@ namespace jtd_utilities
     {
         public SqlConnection cnnSQL;
 
-        public void Connect(Boolean UseIntegratedSecurity = false)
+        public void Connect()
         {
             string connetionString = null;
             SqlConnection cnn;
 
-            if (UseIntegratedSecurity)
-            {
-                connetionString = Properties.sql.Default.connectionStringIntegrated;
-            }
-            else
-            {
-                connetionString = Properties.sql.Default.connectionString;
-            }
+            connetionString = Properties.sql.Default.connectionStringIntegrated;
 
             cnn = new SqlConnection(connetionString);
             try
@@ -66,11 +60,49 @@ namespace jtd_utilities
             return token.AccessToken;
         }
 
+        public void BackupDatabase()
+        {
+            // Build the backup file name
+            string filename = string.Format("P21-{0}.bak", DateTime.Now.ToString("yyyy-MM-dd"));
+
+            // Query to execute against the database
+            string query = String.Format("BACKUP DATABASE P21 TO DISK = '{0}' WITH INIT", filename);
+
+            // Execute the backup
+            SqlCommand cmd = new SqlCommand(query, cnnSQL);
+            cmd.CommandTimeout = 180;
+            cmd.ExecuteNonQuery();
+            
+        }
+
+        public void RestoreDatabase()
+        {
+
+            // Query to execute against the database
+            string query = "RESTORE DATABASE P21 FROM DISK = 'E:\\SQL\\Backup\\P21-SOM-Integration-Post-Import.bak' WITH REPLACE, RECOVERY";
+
+            // Execute the backup
+            SqlCommand cmd = new SqlCommand(query, cnnSQL);
+            cmd.CommandTimeout = 180;
+            cmd.ExecuteNonQuery();
+
+        }
+
+        public static void RemoveUsers()
+        {
+            Server server = new Server("JTDSQL02.JTDINC.LOCAL");
+            //Server server = new Server("localhost");
+            Database database = new Database(server, "P21");
+            database.Refresh();
+            server.KillAllProcesses("P21");
+            database.Alter(TerminationClause.RollbackTransactionsImmediately);
+        }
+
         public void RestartIntegration()
         {
             string folderName = "Subzero Order Management";
-            string projectName = "SOM Recover Process";
-            string packageName = "SOM Recover Process.dtsx";
+            string projectName = "SOM Integration Project";
+            string packageName = "SOM Integration Integrate With P21.dtsx";
             //string projectName = "SOM Invoice Comments";
             //string packageName = "SOM Update Invoice Comments.dtsx";
 
@@ -92,8 +124,6 @@ namespace jtd_utilities
                 // Get the package
                 PackageInfo package = project.Packages[packageName];
 
-                jtd_utilities.log.AppendLog("Restarting Job");
-
                 // Run the package
                 package.Execute(false, null);
 
@@ -105,6 +135,45 @@ namespace jtd_utilities
             return;
 
         }
+        public void RunComments()
+        {
+            string folderName = "Subzero Order Management";
+            //string projectName = "SOM Integration Project";
+            //string packageName = "SOM Integration Integrate With P21.dtsx";
+            string projectName = "SOM Invoice Comments";
+            string packageName = "SOM Update Invoice Comments.dtsx";
+
+            try
+            {
+
+                // Create the Integration Services object
+                IntegrationServices integrationServices = new IntegrationServices(this.cnnSQL);
+
+                // Get the Integration Services catalog
+                Catalog catalog = integrationServices.Catalogs["SSISDB"];
+
+                // Get the folder
+                CatalogFolder folder = catalog.Folders[folderName];
+
+                // Get the project
+                ProjectInfo project = folder.Projects[projectName];
+
+                // Get the package
+                PackageInfo package = project.Packages[packageName];
+
+                // Run the package
+                package.Execute(false, null);
+
+            }
+            catch (Exception ex)
+            {
+                jtd_utilities.log.AppendLog("Can't restart job.  Error:" + ex.Message);
+            }
+
+            return;
+
+        }
+
     }
 }
 

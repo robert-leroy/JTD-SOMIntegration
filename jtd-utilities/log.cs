@@ -9,6 +9,11 @@ namespace jtd_utilities
 {
     public class log
     {
+
+        public static string FileName = @"c:\\sism\Archive\20190101\Integration-log.txt";
+        //public static string FileName = @"\\jtdsql02.jtdinc.local\c$\sism\Archive\20190101\Integration-log.txt";
+        //     public string FileName = jtd_utilities.log.GetDirectory();
+
         public static void AppendLog(String txtMessage)
         {
 
@@ -17,7 +22,7 @@ namespace jtd_utilities
             // Write to the file
             using (StreamWriter w = File.AppendText(strPath))
             {
-                w.WriteLine(txtMessage);
+                w.WriteLine(DateTime.Now.ToLongTimeString()+ " -- " + txtMessage);
             }
         }
 

@@ -12,28 +12,27 @@ namespace jtd_som_check
     {
         static void Main(string[] args)
         {
-
-            //string FileName = @"\\jtdsql02.jtdinc.local\c$\sism\Archive\20190110\Integration-log.txt";
-            string FileName = jtd_utilities.log.GetDirectory();
+            // Restart Flag
             string[] lines;
 
-            if (File.Exists(FileName))
+            if (File.Exists(jtd_utilities.log.FileName))
             {
                 try
                 {
-                    lines = File.ReadAllLines(FileName);
+                    lines = File.ReadAllLines(jtd_utilities.log.FileName);
 
                     for (int a = 0; a < lines.Count(); a++)
                     {
                         if (lines[a].Contains("TimeoutException") || lines[a].Contains("timed out"))
                         {
+                            // TODO Uncomment this
                             jtd_utilities.mail.SendEmailMessage("JTD Error -- Looks like a timeout.");
                             jtd_utilities.mail.SendTwilioMessage("JTDSQL02 -- Looks like a timeout. Restarting the Job");
 
-                            jtd_utilities.sql SQL = new sql();
-                            SQL.Connect(true);
-                            SQL.RestartIntegration();
-                            SQL.Disconnect();
+                            // ---------------------------
+                            //     RESTART THE JOB
+                            // ---------------------------
+                            jtd_utilities.restart.restartJob();
 
                             break;
                         }
@@ -49,6 +48,8 @@ namespace jtd_som_check
                 jtd_utilities.mail.SendEmailMessage("JTD Error -- No Log File.");
                 jtd_utilities.mail.SendTwilioMessage("JTDSQL02 -- No Log File. Need to check the FTP process");
             }
+
+            return;
         }
     }
 }

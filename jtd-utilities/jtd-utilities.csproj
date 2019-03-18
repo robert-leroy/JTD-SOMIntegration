@@ -44,6 +44,10 @@
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\jtdsql02.jtdinc.local\c$\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.ConnectionInfo\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Management.IntegrationServices, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\jtdsql02.jtdinc.local\c$\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.Management.IntegrationServices\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.Management.IntegrationServices.dll</HintPath>
@@ -56,6 +60,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\jtdsql02.jtdinc.local\c$\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.Smo\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.Smo.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\jtdsql02.jtdinc.local\c$\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.SqlEnum\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -67,6 +75,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +96,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="restart.cs" />
     <Compile Include="sql.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,8 +25,7 @@ namespace jtd_utilities.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=jtdsql02.jtdinc.local;Initial Catalog=p21;User ID=admin;Password=6969" +
-            "46")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));

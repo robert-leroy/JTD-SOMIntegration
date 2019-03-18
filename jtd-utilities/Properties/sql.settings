@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="connectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=jtdsql02.jtdinc.local;Initial Catalog=p21;User ID=admin;Password=696946</Value>
+      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946</Value>
     </Setting>
     <Setting Name="userName" Type="System.String" Scope="User">
       <Value Profile="(Default)">admin</Value>

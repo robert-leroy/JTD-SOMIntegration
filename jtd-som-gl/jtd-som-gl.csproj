@@ -71,8 +71,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.DomainObject.dll</HintPath>
     </Reference>
-    <Reference Include="Ads.Soa.Rest">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Rest.dll</HintPath>
+    <Reference Include="Ads.Soa.Rest, Version=2.3.6.2188, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21APICodeExamples\Ads.Soa.Rest.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Soap">
       <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Soap.dll</HintPath>

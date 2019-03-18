@@ -15,11 +15,11 @@ namespace jtd_som_check
             // Restart Flag
             string[] lines;
 
-            if (File.Exists(jtd_utilities.log.FileName))
+            if (File.Exists(jtd_utilities.log.GetDirectory()))
             {
                 try
                 {
-                    lines = File.ReadAllLines(jtd_utilities.log.FileName);
+                    lines = File.ReadAllLines(jtd_utilities.log.GetDirectory());
 
                     for (int a = 0; a < lines.Count(); a++)
                     {

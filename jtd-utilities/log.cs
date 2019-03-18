@@ -10,10 +10,6 @@ namespace jtd_utilities
     public class log
     {
 
-        public static string FileName = @"c:\\sism\Archive\20190101\Integration-log.txt";
-        //public static string FileName = @"\\jtdsql02.jtdinc.local\c$\sism\Archive\20190101\Integration-log.txt";
-        //     public string FileName = jtd_utilities.log.GetDirectory();
-
         public static void AppendLog(String txtMessage)
         {
 
@@ -42,6 +38,10 @@ namespace jtd_utilities
             }
 
             strPath += "\\Integration-log.txt";
+
+            // For testing
+            //strPath = @"c:\\sism\Archive\20190101\Integration-log.txt";
+            //strPath = @"\\jtdsql02.jtdinc.local\c$\sism\Archive\20190101\Integration-log.txt";
 
             return strPath;
         }

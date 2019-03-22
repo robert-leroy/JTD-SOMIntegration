@@ -77,6 +77,9 @@
     <Reference Include="Ads.Soa.Soap">
       <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Soap.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="P21.Common">
       <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\P21.Common.dll</HintPath>
     </Reference>
@@ -111,6 +114,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\inventory.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>inventory.Designer.cs</LastGenOutput>

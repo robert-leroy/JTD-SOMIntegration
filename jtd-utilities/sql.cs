@@ -109,20 +109,28 @@ namespace jtd_utilities
 
                 // Get the Integration Services catalog
                 Catalog catalog = integrationServices.Catalogs["SSISDB"];
+                jtd_utilities.log.AppendLog("Got Catalog.");
+
 
                 // Get the folder
                 CatalogFolder folder = catalog.Folders[folderName];
+                jtd_utilities.log.AppendLog("Got Folder.");
 
                 // Get the project
                 ProjectInfo project = folder.Projects[projectName];
+                jtd_utilities.log.AppendLog("Got Project.");
 
                 // Get the package
                 PackageInfo package = project.Packages[packageName];
+                jtd_utilities.log.AppendLog("Got Package.");
 
                 // Run the package
                 package.Execute(false, null);
+                jtd_utilities.log.AppendLog("Job restarted.");
 
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 jtd_utilities.log.AppendLog("Can't restart job.  Error:" + ex.Message);
             }
@@ -166,6 +174,26 @@ namespace jtd_utilities
             }
 
             return;
+
+        }
+
+        public void Check2200Balance()
+        {
+
+            // Query to execute against the database
+            string query = "SELECT period_balance FROM balances";
+            query += String.Format("WHERE period = {0} AND year_for_period = {1} AND account_no = 220010", DateTime.Now.Month, DateTime.Now.Year);
+
+            // Execute the backup
+            SqlCommand cmd = new SqlCommand(query, cnnSQL);
+            cmd.CommandTimeout = 180;
+            Decimal CurrBalance = (Decimal)cmd.ExecuteScalar();
+
+            if(CurrBalance != 0)
+            {
+                jtd_utilities.log.AppendLog("2200-10 Balance is Non-Zero.");
+                jtd_utilities.mail.SendEmailMessage("2200-10 Balance is Non-Zero.  Please check the SOM Integration processing.");
+            }
 
         }
 

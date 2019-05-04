@@ -25,7 +25,7 @@ namespace jtd_som_check
                     {
                         if (lines[a].Contains("TimeoutException") || lines[a].Contains("timed out"))
                         {
-                            // TODO Uncomment this
+                            // Found an error, send the message
                             jtd_utilities.mail.SendEmailMessage("JTD Error -- Looks like a timeout.");
                             jtd_utilities.mail.SendTwilioMessage("JTDSQL02 -- Looks like a timeout. Restarting the Job");
 
@@ -48,6 +48,11 @@ namespace jtd_som_check
                 jtd_utilities.mail.SendEmailMessage("JTD Error -- No Log File.");
                 jtd_utilities.mail.SendTwilioMessage("JTDSQL02 -- No Log File. Need to check the FTP process");
             }
+
+            // RJL May the Fourth, 2019
+            // Check the Current GL Integration Balance.
+            jtd_utilities.sql sqlConn = new sql();
+            sqlConn.Check2200Balance();
 
             return;
         }

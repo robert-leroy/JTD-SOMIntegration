@@ -195,7 +195,9 @@ namespace jtd_som_orders
 
                 if ((orderCreate.WebReferenceNo != "3099949") && 
                     (orderCreate.WebReferenceNo != "3099978") && 
-                    (orderCreate.WebReferenceNo != "3099983")) 
+                    (orderCreate.WebReferenceNo != "3099983") &&
+                    (orderCreate.PoNo != "HOLLY ELLIS SN FIX")
+                    ) 
                 {
                     // Now we have a populated Order XML Document and we can call the webservice
                     // Fingers Crossed!!

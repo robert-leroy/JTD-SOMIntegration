@@ -52,6 +52,7 @@ namespace jtd_som_check
             // RJL May the Fourth, 2019
             // Check the Current GL Integration Balance.
             jtd_utilities.sql sqlConn = new sql();
+            sqlConn.Connect();
             sqlConn.Check2200Balance();
 
             return;

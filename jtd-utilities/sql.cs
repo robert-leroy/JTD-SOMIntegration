@@ -181,7 +181,7 @@ namespace jtd_utilities
         {
 
             // Query to execute against the database
-            string query = "SELECT period_balance FROM balances";
+            string query = "SELECT period_balance FROM balances ";
             query += String.Format("WHERE period = {0} AND year_for_period = {1} AND account_no = 220010", DateTime.Now.Month, DateTime.Now.Year);
 
             // Execute the backup

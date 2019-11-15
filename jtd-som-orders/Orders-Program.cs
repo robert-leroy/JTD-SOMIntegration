@@ -5,7 +5,7 @@ using Ads.Soa.DomainObject.Security;
 using Ads.Common.Service.Rest.Client;
 using Ads.Common.Service.Rest.Client.Exception;
 using Ads.Common.Service.Error;
-using P21.Soa.Service.Rest.Common;
+using P21.Soa.Service;
 using Ads.Soa.Rest.Security;
 using jtd_utilities;
 
@@ -93,7 +93,7 @@ namespace jtd_som_orders
             try
             {
 
-                RestClientSecurity rcs = RestResourceClientHelper.GetClientSecurity(strToken);
+                RestClientSecurity rcs = P21.Soa.Service.Rest.Common.RestResourceClientHelper.GetClientSecurity(strToken);
 
                 // This call generates a client which has all of the exposed rest methods.  Token security is used based off the user and password.
                 P21.Soa.Service.Rest.Sales.OrderResourceClient orderResourceClient =
@@ -133,6 +133,9 @@ namespace jtd_som_orders
                 orderCreate.WebReferenceNo = drOrder["WebReferenceNumber"].ToString();
                 orderCreate.CreateInvoice = ((drOrder["CreateInvoice"].ToString() == "Y") ? true : false);
 
+                /* RJL 11/15/2019 - Replace the following block with file read to support more flexibility 
+                 * to stop orders suddenly during a business day without calling support.
+                 * 
                 // RJL 05/31/2018 - For Ohio Misc. customers, when there is tax, don't convert to an invoice.  
                 //                  This is necssary because we don't know which P21 tax jurisdiction to apply.
                 if ((orderCreate.CustomerId == 10164) || (orderCreate.CustomerId == 10165))
@@ -142,6 +145,16 @@ namespace jtd_som_orders
                         orderCreate.CreateInvoice = false;
                     }
                 }
+                 *
+                 * Opening the file multiple times isn't super efficient fbut we only do 30 invoices per day so...whatever;  Its clean.
+                 */
+                string[] strCustList = System.IO.File.ReadAllLines(@"C:\sism\StopCustomerList.txt");
+                foreach(string strCustNum in strCustList)
+                {
+                    if (orderCreate.CustomerId == Convert.ToInt16(strCustNum))
+                        orderCreate.CreateInvoice = false;
+                }
+                // RJL 11/15/2019 - End
 
                 // Append Header Notes
                 orderCreate.Notes = AppendOrderNotes(drOrder["ImportSet"].ToString());

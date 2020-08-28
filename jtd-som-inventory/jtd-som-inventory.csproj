@@ -52,45 +52,41 @@
     <StartupObject>jtd_som_inventory.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ads.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Common.dll</HintPath>
+    <Reference Include="Ads.Common">
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Common.License">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Common.License.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.License.dll</HintPath>
     </Reference>
-    <Reference Include="Ads.Common.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Common.Service.dll</HintPath>
+    <Reference Include="Ads.Common.Service">
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.Service.dll</HintPath>
     </Reference>
-    <Reference Include="Ads.Soa.Business, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Business.dll</HintPath>
+    <Reference Include="Ads.Soa.Business">
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Business.dll</HintPath>
     </Reference>
-    <Reference Include="Ads.Soa.DomainObject, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.DomainObject.dll</HintPath>
+    <Reference Include="Ads.Soa.DomainObject">
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.DomainObject.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Rest">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Rest.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Rest.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Soap">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\Ads.Soa.Soap.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Soap.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="P21.Common">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\P21.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.Common.dll</HintPath>
     </Reference>
     <Reference Include="P21.DomainObject">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\P21.DomainObject.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.DomainObject.dll</HintPath>
     </Reference>
     <Reference Include="P21.DomainObject.UDF">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\P21.DomainObject.UDF.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.DomainObject.UDF.dll</HintPath>
     </Reference>
     <Reference Include="P21.Soa.Service">
-      <HintPath>\\jtdsql02.jtdinc.local\c$\Epicor\Prophet21\Middleware\Default\P21API\bin\P21.Soa.Service.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.Soa.Service.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

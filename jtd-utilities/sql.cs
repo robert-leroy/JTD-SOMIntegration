@@ -12,12 +12,14 @@ namespace jtd_utilities
 
         public void Connect()
         {
-            string connetionString = null;
+            string connectionString = null;
             SqlConnection cnn;
 
-            connetionString = Properties.sql.Default.connectionStringIntegrated;
+            //connectionString = Properties.sql.Default.connectionStringIntegrated;
+            //            connectionString = Properties.Settings.Default.SqlConnection;
+            connectionString = Properties.sql.Default.connectionString;
 
-            cnn = new SqlConnection(connetionString);
+            cnn = new SqlConnection(connectionString);
             try
             {
                 cnn.Open();

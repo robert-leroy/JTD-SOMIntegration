@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="jtd_som_360spiff" GeneratedClassName="spiff">
+  <Profiles />
+  <Settings>
+    <Setting Name="SqlQuery" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select s.* from P21.dbo.SOM_SomShipmentDetail d
+join p21.dbo.SOM_SomShipmentSerial s on s.invnbr = d.invnbr and s.invseq = d.invseq and s.itmnbr = d.itmnbr
+join p21.dbo.inv_mast i on i.item_id = d.ITMMDL
+join p21.dbo.inv_loc l on l.inv_mast_uid = i.inv_mast_uid 
+join p21.dbo.vendor v on l.primary_supplier_id = v.vendor_id
+where l.location_id = '10' and (v.vendor_id = '10008' or v.vendor_id = '10009') and i.serialized = 'Y'
+</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

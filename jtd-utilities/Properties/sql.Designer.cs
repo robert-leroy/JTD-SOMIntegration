@@ -12,7 +12,7 @@ namespace jtd_utilities.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class sql : global::System.Configuration.ApplicationSettingsBase {
         
         private static sql defaultInstance = ((sql)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new sql())));
@@ -23,87 +23,66 @@ namespace jtd_utilities.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
             }
-            set {
-                this["connectionString"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string userName {
             get {
                 return ((string)(this["userName"]));
             }
-            set {
-                this["userName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("696946")]
         public string passWord {
             get {
                 return ((string)(this["passWord"]));
             }
-            set {
-                this["passWord"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://jtdsql02.jtdinc.local:3080/api")]
         public string rootUri {
             get {
                 return ((string)(this["rootUri"]));
             }
-            set {
-                this["rootUri"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("bob@leroynet.com")]
         public string MailUsername {
             get {
                 return ((string)(this["MailUsername"]));
             }
-            set {
-                this["MailUsername"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Futur3W@v3")]
         public string MailPassword {
             get {
                 return ((string)(this["MailPassword"]));
             }
-            set {
-                this["MailPassword"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Server=jtdsql02.jtdinc.local;Database=P21;Trusted_Connection=yes;")]
         public string connectionStringIntegrated {
             get {
                 return ((string)(this["connectionStringIntegrated"]));
-            }
-            set {
-                this["connectionStringIntegrated"] = value;
             }
         }
     }

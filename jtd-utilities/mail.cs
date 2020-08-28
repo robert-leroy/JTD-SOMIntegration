@@ -56,22 +56,26 @@ namespace jtd_utilities
             System.Net.NetworkCredential SmtpUser = new System.Net.NetworkCredential();
 
             Message.From = new MailAddress("5138843612@tmomail.net", "5138843612");
-            Message.IsBodyHtml = true;
+            Message.IsBodyHtml = false;
 
             //MailAddress toAddress0 = new MailAddress("5138843612@tmomail.net");
             //MailAddress toAddress0 = new MailAddress("5133005031@txt.att.net");
             MailAddress toAddress1 = new MailAddress("bob@leroynet.com");
-            //MailAddress toAddress2 = new MailAddress("holly@jtdinc.com");
-            //MailAddress toAddress3 = new MailAddress("TisdelVIP@360Insights.com");
+            MailAddress toAddress2 = new MailAddress("holly@jtdinc.com");
+            MailAddress toAddress3 = new MailAddress("TisdelVIP@360Insights.com");
             Message.To.Add(toAddress1);
-            //Message.To.Add(toAddress2);
-            //Message.To.Add(toAddress3);
+            Message.To.Add(toAddress2);
+            Message.To.Add(toAddress3);
 
             Message.Subject = "Tisdel Spiff Data";
-            Message.Body += "\r\n===========================================================";
-            Message.Body += "\r\n" + msg;
-            Message.Body += "\r\n===========================================================";
-            Attachment csvAttachment = new Attachment(@"./TisdelSpiff.txt");
+            Message.Body += "Hi Team - \r\n";
+            Message.Body += "\r\nThe daily Tisdel SPIFF file is attached.  " + msg + "\r\n";
+            Message.Body += "\r\nIf you have any quesitons about this file, please contact: \r\n";
+            Message.Body += "    * Bob LeRoy @ 513.884.3612 or bob@leroynet.com\r\n";
+            Message.Body += "    * Holly Ellis @ 513.339.0990 or holly@jtdinc.com\r\n";
+            Message.Body += "\r\n";
+            Message.Body += "\r\n";
+            Attachment csvAttachment = new Attachment(@".\\TisdelSpiff.txt");
             Message.Attachments.Add(csvAttachment);
 
             //-- Define Authenticated User
@@ -98,8 +102,8 @@ namespace jtd_utilities
         static public void SendTwilioMessage(String msg)
         {
             // Find your Account Sid and Token at twilio.com/console
-            const string accountSid = "ACbb0cc2f2daeadc53ac42a84bc8f32096";
-            const string authToken = "531d5cd000d007e3e9e71a41df1a5f6c";
+            string accountSid = Properties.sql.Default.TwillioSid;
+            string authToken = Properties.sql.Default.TwillioToken;
 
             TwilioClient.Init(accountSid, authToken);
 

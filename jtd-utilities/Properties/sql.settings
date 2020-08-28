@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="connectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946</Value>
+      <Value Profile="(Default)">Data Source=jtdsql02.jtdinc.local;Initial Catalog=p21;User=admin;Password=696946</Value>
     </Setting>
     <Setting Name="userName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">admin</Value>
@@ -22,6 +22,12 @@
     </Setting>
     <Setting Name="connectionStringIntegrated" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Server=jtdsql02.jtdinc.local;Database=P21;Trusted_Connection=yes;</Value>
+    </Setting>
+    <Setting Name="TwillioSid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ACbb0cc2f2daeadc53ac42a84bc8f32096</Value>
+    </Setting>
+    <Setting Name="TwillioToken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">29bc2c4719f065d5b07b211e4b42776c</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -12,7 +12,7 @@ namespace jtd_utilities.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class sql : global::System.Configuration.ApplicationSettingsBase {
         
         private static sql defaultInstance = ((sql)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new sql())));
@@ -25,7 +25,7 @@ namespace jtd_utilities.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=jtdsql02.jtdinc.local;Initial Catalog=p21;User=admin;Password=696946")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
@@ -83,6 +83,24 @@ namespace jtd_utilities.Properties {
         public string connectionStringIntegrated {
             get {
                 return ((string)(this["connectionStringIntegrated"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ACbb0cc2f2daeadc53ac42a84bc8f32096")]
+        public string TwillioSid {
+            get {
+                return ((string)(this["TwillioSid"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("29bc2c4719f065d5b07b211e4b42776c")]
+        public string TwillioToken {
+            get {
+                return ((string)(this["TwillioToken"]));
             }
         }
     }

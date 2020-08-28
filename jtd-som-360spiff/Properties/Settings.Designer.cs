@@ -32,8 +32,7 @@ join p21.dbo.inv_loc l on l.inv_mast_uid = i.inv_mast_uid
 join p21.dbo.vendor v on l.primary_supplier_id = v.vendor_id
 join p21.dbo.customer c on c.customer_id = d.PTRCUSID
 where l.location_id = '10' and (v.vendor_id = '10008' or v.vendor_id = '10009') and i.serialized = 'Y'
-  and c.customer_id not in ('10080','10081','10082','10083','10086','10087','10091','10092','10093','10094','10095','10096','10101','10102','10103','10104','11652')
-")]
+  and c.customer_id not in ('10080','10081','10082','10083','10086','10087','10091','10092','10093','10094','10095','10096','10101','10102','10103','10104','11652')")]
         public string SqlQuery {
             get {
                 return ((string)(this["SqlQuery"]));

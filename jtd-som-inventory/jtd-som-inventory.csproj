@@ -53,40 +53,40 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ads.Common">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.dll</HintPath>
+      <HintPath>..\p21\Ads.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Common.License">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.License.dll</HintPath>
+      <HintPath>..\p21\Ads.Common.License.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Common.Service">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Common.Service.dll</HintPath>
+      <HintPath>..\p21\Ads.Common.Service.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Business">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Business.dll</HintPath>
+      <HintPath>..\p21\Ads.Soa.Business.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.DomainObject">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.DomainObject.dll</HintPath>
+      <HintPath>..\p21\Ads.Soa.DomainObject.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Rest">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Rest.dll</HintPath>
+      <HintPath>..\p21\Ads.Soa.Rest.dll</HintPath>
     </Reference>
     <Reference Include="Ads.Soa.Soap">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\Ads.Soa.Soap.dll</HintPath>
+      <HintPath>..\p21\Ads.Soa.Soap.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="P21.Common">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.Common.dll</HintPath>
+      <HintPath>..\p21\P21.Common.dll</HintPath>
     </Reference>
     <Reference Include="P21.DomainObject">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.DomainObject.dll</HintPath>
+      <HintPath>..\p21\P21.DomainObject.dll</HintPath>
     </Reference>
     <Reference Include="P21.DomainObject.UDF">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.DomainObject.UDF.dll</HintPath>
+      <HintPath>..\p21\P21.DomainObject.UDF.dll</HintPath>
     </Reference>
     <Reference Include="P21.Soa.Service">
-      <HintPath>..\..\..\..\..\..\sism\P21 Middleware\P21.Soa.Service.dll</HintPath>
+      <HintPath>..\p21\P21.Soa.Service.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

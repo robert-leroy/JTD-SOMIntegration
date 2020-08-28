@@ -23,13 +23,14 @@ namespace jtd_som_360spiff
 
             // Get the list of Serials
             DataTable dsHeaders = SqlGetSerialList();
+            totalLines = dsHeaders.Rows.Count;
 
             // Write to File
             String csvContents = BuildCSV(dsHeaders);
             System.IO.File.WriteAllText(@"./TisdelSpiff.txt", csvContents);
 
             // Send the message
-            jtd_utilities.mail.SpiffEmailMessage("Spiff Export Complete.");
+            jtd_utilities.mail.SpiffEmailMessage("The export completed with " + totalLines.ToString() + " serial number(s). \r\n");
 
             return;
         } 

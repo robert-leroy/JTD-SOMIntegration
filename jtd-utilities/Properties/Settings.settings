@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="jtd_utilities.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="SqlConnection" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=p21;User=admin;Password=696946</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

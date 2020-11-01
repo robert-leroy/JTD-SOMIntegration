@@ -3,43 +3,46 @@
   <Profiles />
   <Settings>
     <Setting Name="SqlQuerySerialLine" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-- Select the Inventory Adjustment Serial File
-SELECT tmp.ImportSet AS ImportSet
-	, tmp.ItemID AS ItemID
-	, RTRIM(s.SRLNBR) As SerialNumber
-	, 0 AS DimensionID
-FROM (SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
-	, d.INVNBR
-	, d.INVSEQ
-	, d.INVDTLSEQ
-	, RTRIM(d.ITMMDL) AS ItemID
-	, d.SHPQTY AS AdjAmount
-	, NULL AS NewQtyOnHand
-	, d.ORDUOM AS UnitOfMeasure
-	, d.UNTCST AS Cost
-	, 0 AS Revision
-FROM SOM_SomShipmentDetail d JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
-JOIN inv_mast i on d.ITMMDL = i.item_id
-WHERE h.INVTYP = 'IV' AND d.WHS = 'OHT') tmp
-JOIN SOM_SomShipmentSerial s on tmp.invnbr = s.invnbr and tmp.invseq = s.invseq and tmp.invdtlseq = s.invdtlseq
-WHERE ImportSet = ? AND ItemID = #</Value>
+      <Value Profile="(Default)">
+        -- Select the Inventory Adjustment Serial File
+        SELECT tmp.ImportSet AS ImportSet
+        , tmp.ItemID AS ItemID
+        , RTRIM(s.SRLNBR) As SerialNumber
+        , 0 AS DimensionID
+        FROM (SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
+        , d.INVNBR
+        , d.INVSEQ
+        , d.INVDTLSEQ
+        , RTRIM(d.ITMMDL) AS ItemID
+        , d.SHPQTY AS AdjAmount
+        , NULL AS NewQtyOnHand
+        , d.ORDUOM AS UnitOfMeasure
+        , d.UNTCST AS Cost
+        , 0 AS Revision
+        FROM SOM_SomShipmentDetail d JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
+        JOIN inv_mast i on d.ITMMDL = i.item_id
+        WHERE h.INVTYP = 'IV' AND (d.WHS = 'OHT' or d.WHS = 'ILT')) tmp
+        JOIN SOM_SomShipmentSerial s on tmp.invnbr = s.invnbr and tmp.invseq = s.invseq and tmp.invdtlseq = s.invdtlseq
+        WHERE ImportSet = ? AND ItemID = #</Value>
     </Setting>
     <Setting Name="SqlQueryGetInventory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-- Select the Inventory Adjustment Item File
-SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
-	, RTRIM(d.ITMMDL) AS ItemID
-	, d.SHPQTY AS AdjAmount
-	, NULL AS NewQtyOnHand
-	, IIF(d.WHS &lt;&gt; 'OHT', '10224', '10') AS SourceLocationID
-	, IIF(d.WHS &lt;&gt; 'OHT', '10224', '10') AS ShipLocationID
-	, d.ORDUOM AS UnitOfMeasure
-	, d.UNTCST AS Cost
-	, 0 AS Revision
-FROM SOM_SomShipmentDetail d
-JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
-JOIN inv_mast i on d.ITMMDL = i.item_id
-WHERE h.INVTYP = 'IV'
-AND d.WHS = 'OHT'</Value>
+      <Value Profile="(Default)">
+        -- Select the Inventory Adjustment Item File
+        SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
+        , RTRIM(d.ITMMDL) AS ItemID
+        , d.SHPQTY AS AdjAmount
+        , NULL AS NewQtyOnHand
+        , IIF((d.WHS = 'OHT' or d.WHS = 'ILT'), '10', '10224') AS SourceLocationID
+        , IIF((d.WHS = 'OHT' or d.WHS = 'ILT'), '10', '10224') AS ShipLocationID
+        , d.ORDUOM AS UnitOfMeasure
+        , d.UNTCST AS Cost
+        , 0 AS Revision
+        FROM SOM_SomShipmentDetail d
+        JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
+        JOIN inv_mast i on d.ITMMDL = i.item_id
+        WHERE h.INVTYP = 'IV'
+        AND (d.WHS = 'OHT' or d.WHS = 'ILT')
+      </Value>
     </Setting>
     <Setting Name="rootUri" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://jtdsql02.jtdinc.local:3080/api</Value>

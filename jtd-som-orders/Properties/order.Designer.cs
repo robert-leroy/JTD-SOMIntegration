@@ -12,7 +12,7 @@ namespace jtd_som_orders.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class order : global::System.Configuration.ApplicationSettingsBase {
         
         private static order defaultInstance = ((order)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new order())));
@@ -20,120 +20,6 @@ namespace jtd_som_orders.Properties {
         public static order Default {
             get {
                 return defaultInstance;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\tImportSet\r\n\t, h.INVNBR\t-- Testing\r\n\t, h.INVSEQ\t-- Testing\r\n\t, RTRIM(h.P" +
-            "TRCUSID) AS CustomerID\r\n\t, h.BTCUSTNM AS CustomerName\r\n\t,\'JTD\' AS CompanyID\r\n\t, " +
-            "IIF ((SELECT COUNT(*) FROM som_somshipmentdetail d WHERE d. whs <> \'OHT\'AND d.in" +
-            "vnbr = h.invnbr AND d.invseq = h.invseq) > 0, \'10224\', \'10\') AS SalesLocationID\r" +
-            "\n\t, REPLACE(REPLACE(REPLACE(REPLACE(UPPER(RTRIM(h.PONBR)),\'\'\'\',\'-\'),\'\"\',\'-\'),\'\\\'" +
-            ",\'-\'),\'~\',\'-\') AS CustomerPONumber\r\n\t, NULL AS ContactID\r\n\t, NULL AS ContactName" +
-            "\r\n\t, \'admin\' AS Taker\r\n\t, NULL AS JobName\r\n\t, CONVERT(varchar(10), h.ORDDT, 120)" +
-            " AS OrderDate\r\n\t, CONVERT(varchar(10), h.INVDT, 120) AS RequestedDate\r\n\t, \'N\' AS" +
-            " Quote\r\n\t, \'Y\' AS Approved\r\n\t-- If ship to in file is NULL, 1 or contains specia" +
-            "l characters, default to customer\'s default ship to\r\n\t, (SELECT MIN(ship_to_id) " +
-            "FROM ship_to where customer_id = h.PTRCUSID and delete_flag = \'N\') AS ShipToID\r\n" +
-            "\t, RTRIM(h.STCUSTNM) AS ShipToName\r\n\t, RTRIM(h.STADDR1) AS ShipToAddress1\r\n\t, RT" +
-            "RIM(h.STADDR2) AS ShipToAddress2\r\n\t, RTRIM(h.STCITY) AS ShipToCity\r\n\t, h.STSTATE" +
-            " AS ShipToState\r\n\t, RTRIM(h.STZIP) AS ShipToZipCode\r\n\t, NULL AS ShipToCountry\r\n\t" +
-            ", IIF ((SELECT COUNT(*) FROM som_somshipmentdetail d WHERE d. whs <> \'OHT\'AND d." +
-            "invnbr = h.invnbr AND d.invseq = h.invseq) > 0, \'10224\', \'10\') AS SourceLocation" +
-            "ID\r\n\t, IIF(au.som_carrier_id IS NULL\r\n\t\tOR au.som_carrier_id = \'TBD\',\r\n\t\t10085, " +
-            "-- Default is Best Way\r\n\t\tau.id) AS CarrierID\r\n\t, NULL AS CarrierName\r\n\t, NULL A" +
-            "S Route\r\n\t, \'Order Complete\' AS PackingBasis\r\n\t, NULL AS DeliveryInstructions\r\n\t" +
-            ", tu.terms_id AS Terms\r\n\t, NULL AS TermsDesc\r\n\t, NULL AS WillCall\r\n\t, RTRIM(h.SA" +
-            "LESTYPE) AS Class1\r\n\t, NULL AS Class2\r\n\t, NULL AS Class3\r\n\t, NULL AS Class4\r\n\t, " +
-            "NULL AS Class5\r\n\t, IIF (h.INVTYP = \'CM\',\'Y\',\'N\') AS RMAFlag\r\n\t, \'FREIGHT\' AS Fre" +
-            "ightCode\r\n\t, NULL AS ThirdPartyBillingFlagDesc\r\n\t, NULL AS CaptureUsageDefault\r\n" +
-            "\t, NULL AS Allocate\r\n\t, NULL AS ContractNumber\r\n\t, NULL AS InvoiceBatchNumber\r\n\t" +
-            ", NULL AS ShipToEmailAddress\r\n\t, NULL AS SetInvoiceExchangeRateSourceDesc\r\n\t, NU" +
-            "LL AS ShpToPhone\r\n\t, NULL AS CurrencyID\r\n\t, NULL AS ApplyBuilderAllowanceFlag\r\n\t" +
-            ", NULL AS QuoteExpirationDate\r\n\t, NULL AS PromiseDate\r\n\t, NULL AS ImportAsQuote\r" +
-            "\n\t, NULL AS QuoteNumber\r\n\t, RTRIM(h.ORDERNBR) AS WebReferenceNumber\t\t-- SOM Orde" +
-            "r No for reference in P21\r\n\t, IIF(UPPER(h.PONBR) = \'TISDEL DISPLAY\' OR CHARINDEX" +
-            "(\'RMT\',h.SALESTYPE) > 0, \'N\', \'Y\') AS CreateInvoice\r\n\t, NULL AS StrategicPricing" +
-            "LibraryID\r\n\t, NULL AS MerchandiseCredit\r\n\t, NULL AS OrderTypePriority\r\n\t, NULL A" +
-            "S UPSCode\r\n\t, NULL AS SupplierOrderNo\r\n\t, NULL AS SupplierReleaseNo\r\n\t, NULL AS " +
-            "PlacedByName\r\n\t, NULL AS OrderType830\r\n\t, NULL AS FreightOut\t\t\t\t-- Not in P21 te" +
-            "mplate, but in import file\r\n\t, UPPER(RTRIM(h.STADDR3)) AS ShipToAddress3\t\t-- Upd" +
-            "ate P21 to display this address line 3\r\n\t, NULL AS QuoteType\t\t\t\t\t-- Not in P21 t" +
-            "emplate, but in import file\r\n\t, NULL AS Homeowner\t\t\t\t\t-- Not in P21 template, bu" +
-            "t in import file\r\n\t, NULL AS Installer\t\t\t\t\t-- Not in P21 template, but in import" +
-            " file\r\n\t, NULL AS Builder\t\t\t\t\t-- Not in P21 template, but in import file\r\n\t, NUL" +
-            "L AS Architect\t\t\t\t\t-- Not in P21 template, but in import file\r\n\t, NULL AS Design" +
-            "er\t\t\t\t\t-- Not in P21 template, but in import file\r\n\t, NULL AS PricingSource\t\t\t\t-" +
-            "- Not in P21 template, but in import file\r\n\t, TOTITMTAX as TaxTotal\r\nFROM (SELEC" +
-            "T ROW_NUMBER() OVER (ORDER BY h.INVNBR, h.INVSEQ) AS ImportSet\r\n\t, h.INVNBR\r\n\t, " +
-            "h.INVSEQ\r\n\tFROM SOM_SomShipmentHeader h\r\n\tWHERE h.INVTYP = \'IV\') tmp\r\nJOIN SOM_S" +
-            "omShipmentHeader as h \r\n\tON tmp.INVNBR = h.INVNBR\r\n\tAND tmp.INVSEQ = h.INVSEQ\r\nL" +
-            "EFT OUTER JOIN address_ud au \r\n\t\tON au.som_carrier_id = RTRIM(h.CARRID)\r\nLEFT OU" +
-            "TER JOIN terms_ud tu\r\n\t\tON tu.som_terms_id = RTRIM(h.TRMCD)\r\nLEFT OUTER JOIN p21" +
-            "_view_ship_to s\r\n\t\tON s.ship_to_id = RTRIM(h.PTRCUSID)\r\nWHERE h.INVTYP = \'IV\'\r\nO" +
-            "RDER BY h.invnbr, h.invseq")]
-        public string SqlQueryHeaders {
-            get {
-                return ((string)(this["SqlQueryHeaders"]));
-            }
-            set {
-                this["SqlQueryHeaders"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT tmp.ImportSet AS ImportSet\r\n\t, tmp.INVNBR -- Testing\r\n\t, d.INVDTLSEQ AS Li" +
-            "neID\r\n\t, RTRIM(d.ITMMDL) AS ItemID\r\n\t, d.SHPQTY AS UnitQuantity\r\n\t, d.ORDUOM AS " +
-            "UnitOfMeasure\r\n\t, d.SLGPRC AS UnitPrice\r\n\t, NULL AS ExtendedDescription\r\n\t, IIF(" +
-            "d.WHS <> \'OHT\', \'10224\', \'10\') AS SourceLocationID\r\n\t, IIF(d.WHS <> \'OHT\', \'1022" +
-            "4\', \'10\') AS ShipLocationID\r\n\t, l.product_group_id AS ProductGroupID\r\n\t, NULL AS" +
-            " SupplierID\r\n\t, NULL AS SupplierName\r\n\t, NULL AS RequiredDate\r\n\t, NULL AS Expedi" +
-            "teDate\r\n\t, NULL AS WillCall\r\n\t, IIF(LEN(RTRIM(d.DTLTXSFX)) > 1,\'Y\',\'N\') AS TaxIt" +
-            "em\r\n\t, NULL AS OKToInterchange\r\n\t, d.ORDUOM AS PricingUnit\r\n\t, d.UNTCST AS Commi" +
-            "ssionCost\r\n\t, NULL AS OtherCost\r\n\t, NULL AS POCost\r\n\t, NULL AS Disposition\r\n\t, \'" +
-            "N\' AS Scheduled\r\n\t, \'Y\' AS ManualPriceOverride\r\n\t, \'N\' AS CommissionCostEdited\r\n" +
-            "\t, \'N\' AS OtherCostEdited\r\n\t, NULL AS CaptureUsage\r\n\t, NULL AS TagAndHoldClassID" +
-            "\r\n\t, NULL AS ContractBinID\r\n\t, NULL AS ContractNo\r\n\t, NULL AS AllocationQty\r\n\t, " +
-            "NULL AS PromiseDate\r\n\t, NULL AS ResolveItemContract\r\n\t, NULL AS Sample\r\n\t, NULL " +
-            "AS QuoteLineNo\r\n\t, NULL AS QuoteComplete\r\n\t, NULL AS ItemDescription\t-- Not in P" +
-            "21 template, but in import file\r\nFROM (SELECT ROW_NUMBER() OVER (ORDER BY h.INVN" +
-            "BR, h.INVSEQ) AS ImportSet\r\n\t, h.INVNBR\r\n\t, h.INVSEQ\r\n\tFROM SOM_SomShipmentHeade" +
-            "r h\r\n\tWHERE h.INVTYP = \'IV\') tmp\r\nINNER JOIN SOM_SomShipmentDetail d\r\n\tON tmp.IN" +
-            "VNBR = d.INVNBR\r\n\tAND tmp.INVSEQ = d.INVSEQ\r\nINNER JOIN inv_mast m \r\n\tON m.item_" +
-            "id = d.itmmdl\r\nINNER JOIN inv_loc l\r\n\tON m.inv_mast_uid = l.inv_mast_uid and l.l" +
-            "ocation_id = \'10\'\r\nWHERE ImportSet = ?\r\nUNION ALL\r\n-- Select the SO Line Special" +
-            " Charges File\r\nSELECT tmp.ImportSet AS ImportSet\r\n\t, tmp.INVNBR\t-- Testing\r\n\t, h" +
-            "s.ROWNBR + 9000000 AS LineID\r\n\t, CASE hs.SPCCHGID\r\n\t\tWHEN \'800\' THEN \'FREIGHT\'\r\n" +
-            "\t\tWHEN \'801\' THEN \'RESTOCKING FEE\'\r\n\t\tWHEN \'803\' THEN \'FREIGHT EXCHANGES\'\r\n\t\tWHE" +
-            "N \'804\' THEN \'TAXABLE FREIGHT\'\r\n                                WHEN \'805\' THEN " +
-            "\'FINANCE CHARGE\'\r\n\t\tWHEN \'806\' THEN \'LABOR CHARGE\'\r\n\t\tWHEN \'807\' THEN \'TAXABLE L" +
-            "ABOR/INSTALL\'\r\n\t\tELSE hs.SPCCHGID\r\n\t  END AS ItemID\r\n\t, 1 AS UnitQuantity\r\n\t, \'E" +
-            "A\' AS UnitOfMeasure\r\n\t, hs.SPCCHGAMT AS UnitPrice\r\n\t, NULL AS ExtendedDescriptio" +
-            "n\r\n\t, IIF(d.WHS <> \'OHT\', \'10224\', \'10\') AS SourceLocationID\r\n\t, IIF(d.WHS <> \'O" +
-            "HT\', \'10224\', \'10\') AS ShipLocationID\r\n\t, NULL AS ProductGroupID\r\n\t, NULL AS Sup" +
-            "plierID\r\n\t, NULL AS SupplierName\r\n\t, NULL AS RequiredDate\r\n\t, NULL AS ExpediteDa" +
-            "te\r\n\t, NULL AS WillCall\r\n\t, IIF(LEN(RTRIM(hs.TAXID)) > 1,\'Y\',\'N\') AS TaxItem\r\n\t," +
-            " NULL AS OKToInterchange\r\n\t, \'EA\' AS PricingUnit\r\n\t, NULL AS CommissionCost\r\n\t, " +
-            "NULL AS OtherCost\r\n\t, NULL AS POCost\r\n\t, NULL AS Disposition\r\n\t, \'N\' AS Schedule" +
-            "d\r\n\t, \'Y\' AS ManualPriceOverride\r\n\t, \'N\' AS CommissionCostEdited\r\n\t, \'N\' AS Othe" +
-            "rCostEdited\r\n\t, NULL AS CaptureUsage\r\n\t, NULL AS TagAndHoldClassID\r\n\t, NULL AS C" +
-            "ontractBinID\r\n\t, NULL AS ContractNo\r\n\t, NULL AS AllocationQty\r\n\t, NULL AS Promis" +
-            "eDate\r\n\t, NULL AS ResolveItemContract\r\n\t, NULL AS Sample\r\n\t, NULL AS QuoteLineNo" +
-            "\r\n\t, NULL AS QuoteComplete\r\n\t, NULL AS ItemDescription\t-- Not in P21 template, b" +
-            "ut in import file\r\nFROM (SELECT ROW_NUMBER() OVER (ORDER BY h.INVNBR, h.INVSEQ) " +
-            "AS ImportSet\r\n\t, h.INVNBR\r\n\t, h.INVSEQ\r\n\tFROM SOM_SomShipmentHeader h\r\n         " +
-            "       WHERE h.INVTYP = \'IV\') tmp\r\nINNER JOIN SOM_SomShipmentHeaderSpecialCharge" +
-            "s hs\r\n\tON tmp.INVNBR = hs.INVNBR\r\nCROSS APPLY (\r\n\tSELECT TOP 1 WHS\r\n\tFROM SOM_So" +
-            "mShipmentDetail sd\r\n\tWHERE tmp.INVNBR = sd.INVNBR \r\n\t) d\r\n--Order by ImportSet\r\n" +
-            "where ImportSet = ?")]
-        public string SqlQueryLines {
-            get {
-                return ((string)(this["SqlQueryLines"]));
-            }
-            set {
-                this["SqlQueryLines"] = value;
             }
         }
         
@@ -301,6 +187,143 @@ WHERE a.ImportSet = ?")]
             }
             set {
                 this["rootUri"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\n                  SELECT\r\n                  ImportSet\r\n                  , h.IN" +
+            "VNBR\t-- Testing\r\n                  , h.INVSEQ\t-- Testing\r\n                  , RT" +
+            "RIM(h.PTRCUSID) AS CustomerID\r\n                  , h.BTCUSTNM AS CustomerName\r\n " +
+            "                 ,\'JTD\' AS CompanyID\r\n                  , IIF ((SELECT COUNT(*) " +
+            "FROM som_somshipmentdetail d WHERE (d.WHS = \'OHT\' or d.WHS = \'ILT\') AND d.invnbr" +
+            " = h.invnbr AND d.invseq = h.invseq) > 0, \'10\', \'10224\') AS SalesLocationID\r\n   " +
+            "               , REPLACE(REPLACE(REPLACE(REPLACE(UPPER(RTRIM(h.PONBR)),\'\'\'\',\'-\')" +
+            ",\'\"\',\'-\'),\'\\\',\'-\'),\'~\',\'-\') AS CustomerPONumber\r\n                  , NULL AS Con" +
+            "tactID\r\n                  , NULL AS ContactName\r\n                  , \'admin\' AS " +
+            "Taker\r\n                  , NULL AS JobName\r\n                  , CONVERT(varchar(" +
+            "10), h.ORDDT, 120) AS OrderDate\r\n                  , CONVERT(varchar(10), h.INVD" +
+            "T, 120) AS RequestedDate\r\n                  , \'N\' AS Quote\r\n                  , " +
+            "\'Y\' AS Approved\r\n                  -- If ship to in file is NULL, 1 or contains " +
+            "special characters, default to customer\'s default ship to\r\n                  , (" +
+            "SELECT MIN(ship_to_id) FROM ship_to where customer_id = h.PTRCUSID and delete_fl" +
+            "ag = \'N\') AS ShipToID\r\n                  , RTRIM(h.STCUSTNM) AS ShipToName\r\n    " +
+            "              , RTRIM(h.STADDR1) AS ShipToAddress1\r\n                  , RTRIM(h." +
+            "STADDR2) AS ShipToAddress2\r\n                  , RTRIM(h.STCITY) AS ShipToCity\r\n " +
+            "                 , h.STSTATE AS ShipToState\r\n                  , RTRIM(h.STZIP) " +
+            "AS ShipToZipCode\r\n                  , NULL AS ShipToCountry\r\n                  ," +
+            " IIF ((SELECT COUNT(*) FROM som_somshipmentdetail d WHERE (d.WHS = \'OHT\' or d.WH" +
+            "S = \'ILT\') AND d.invnbr = h.invnbr AND d.invseq = h.invseq) > 0, \'10\', \'10224\') " +
+            "AS SourceLocationID\r\n\t, IIF(au.som_carrier_id IS NULL\r\n\t\tOR au.som_carrier_id = " +
+            "\'TBD\',\r\n\t\t10085, -- Default is Best Way\r\n\t\tau.id) AS CarrierID\r\n\t, NULL AS Carri" +
+            "erName\r\n\t, NULL AS Route\r\n\t, \'Order Complete\' AS PackingBasis\r\n\t, NULL AS Delive" +
+            "ryInstructions\r\n\t, tu.terms_id AS Terms\r\n\t, NULL AS TermsDesc\r\n\t, NULL AS WillCa" +
+            "ll\r\n\t, RTRIM(h.SALESTYPE) AS Class1\r\n\t, NULL AS Class2\r\n\t, NULL AS Class3\r\n\t, NU" +
+            "LL AS Class4\r\n\t, NULL AS Class5\r\n\t, IIF (h.INVTYP = \'CM\',\'Y\',\'N\') AS RMAFlag\r\n\t," +
+            " \'FREIGHT\' AS FreightCode\r\n\t, NULL AS ThirdPartyBillingFlagDesc\r\n\t, NULL AS Capt" +
+            "ureUsageDefault\r\n\t, NULL AS Allocate\r\n\t, NULL AS ContractNumber\r\n\t, NULL AS Invo" +
+            "iceBatchNumber\r\n\t, NULL AS ShipToEmailAddress\r\n\t, NULL AS SetInvoiceExchangeRate" +
+            "SourceDesc\r\n\t, NULL AS ShpToPhone\r\n\t, NULL AS CurrencyID\r\n\t, NULL AS ApplyBuilde" +
+            "rAllowanceFlag\r\n\t, NULL AS QuoteExpirationDate\r\n\t, NULL AS PromiseDate\r\n\t, NULL " +
+            "AS ImportAsQuote\r\n\t, NULL AS QuoteNumber\r\n\t, RTRIM(h.ORDERNBR) AS WebReferenceNu" +
+            "mber\t\t-- SOM Order No for reference in P21\r\n\t, IIF(UPPER(h.PONBR) = \'TISDEL DISP" +
+            "LAY\' OR CHARINDEX(\'RMT\',h.SALESTYPE) > 0, \'N\', \'Y\') AS CreateInvoice\r\n\t, NULL AS" +
+            " StrategicPricingLibraryID\r\n\t, NULL AS MerchandiseCredit\r\n\t, NULL AS OrderTypePr" +
+            "iority\r\n\t, NULL AS UPSCode\r\n\t, NULL AS SupplierOrderNo\r\n\t, NULL AS SupplierRelea" +
+            "seNo\r\n\t, NULL AS PlacedByName\r\n\t, NULL AS OrderType830\r\n\t, NULL AS FreightOut\t\t\t" +
+            "\t-- Not in P21 template, but in import file\r\n\t, UPPER(RTRIM(h.STADDR3)) AS ShipT" +
+            "oAddress3\t\t-- Update P21 to display this address line 3\r\n\t, NULL AS QuoteType\t\t\t" +
+            "\t\t-- Not in P21 template, but in import file\r\n\t, NULL AS Homeowner\t\t\t\t\t-- Not in" +
+            " P21 template, but in import file\r\n\t, NULL AS Installer\t\t\t\t\t-- Not in P21 templa" +
+            "te, but in import file\r\n\t, NULL AS Builder\t\t\t\t\t-- Not in P21 template, but in im" +
+            "port file\r\n\t, NULL AS Architect\t\t\t\t\t-- Not in P21 template, but in import file\r\n" +
+            "\t, NULL AS Designer\t\t\t\t\t-- Not in P21 template, but in import file\r\n\t, NULL AS P" +
+            "ricingSource\t\t\t\t-- Not in P21 template, but in import file\r\n\t, TOTITMTAX as TaxT" +
+            "otal\r\nFROM (SELECT ROW_NUMBER() OVER (ORDER BY h.INVNBR, h.INVSEQ) AS ImportSet\r" +
+            "\n\t, h.INVNBR\r\n\t, h.INVSEQ\r\n\tFROM SOM_SomShipmentHeader h\r\n\tWHERE h.INVTYP = \'IV\'" +
+            ") tmp\r\nJOIN SOM_SomShipmentHeader as h \r\n\tON tmp.INVNBR = h.INVNBR\r\n\tAND tmp.INV" +
+            "SEQ = h.INVSEQ\r\nLEFT OUTER JOIN address_ud au \r\n\t\tON au.som_carrier_id = RTRIM(h" +
+            ".CARRID)\r\nLEFT OUTER JOIN terms_ud tu\r\n\t\tON tu.som_terms_id = RTRIM(h.TRMCD)\r\nLE" +
+            "FT OUTER JOIN p21_view_ship_to s\r\n\t\tON s.ship_to_id = RTRIM(h.PTRCUSID)\r\nWHERE h" +
+            ".INVTYP = \'IV\'\r\nORDER BY h.invnbr, h.invseq")]
+        public string SqlQueryHeaders {
+            get {
+                return ((string)(this["SqlQueryHeaders"]));
+            }
+            set {
+                this["SqlQueryHeaders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\n                  SELECT tmp.ImportSet AS ImportSet\r\n                  , tmp.IN" +
+            "VNBR -- Testing\r\n                  , d.INVDTLSEQ AS LineID\r\n                  , " +
+            "RTRIM(d.ITMMDL) AS ItemID\r\n                  , d.SHPQTY AS UnitQuantity\r\n       " +
+            "           , d.ORDUOM AS UnitOfMeasure\r\n                  , d.SLGPRC AS UnitPric" +
+            "e\r\n                  , NULL AS ExtendedDescription\r\n                  , IIF((d.W" +
+            "HS = \'OHT\' or d.WHS = \'ILT\'), \'10\', \'10224\') AS SourceLocationID\r\n              " +
+            "    , IIF((d.WHS = \'OHT\' or d.WHS = \'ILT\'), \'10\', \'10224\') AS ShipLocationID\r\n  " +
+            "                , l.product_group_id AS ProductGroupID\r\n                  , NULL" +
+            " AS SupplierID\r\n                  , NULL AS SupplierName\r\n                  , NU" +
+            "LL AS RequiredDate\r\n                  , NULL AS ExpediteDate\r\n                  " +
+            ", NULL AS WillCall\r\n                  , IIF(LEN(RTRIM(d.DTLTXSFX)) > 1,\'Y\',\'N\') " +
+            "AS TaxItem\r\n                  , NULL AS OKToInterchange\r\n                  , d.O" +
+            "RDUOM AS PricingUnit\r\n                  , d.UNTCST AS CommissionCost\r\n          " +
+            "        , NULL AS OtherCost\r\n                  , NULL AS POCost\r\n               " +
+            "   , NULL AS Disposition\r\n                  , \'N\' AS Scheduled\r\n                " +
+            "  , \'Y\' AS ManualPriceOverride\r\n                  , \'N\' AS CommissionCostEdited\r" +
+            "\n                  , \'N\' AS OtherCostEdited\r\n                  , NULL AS Capture" +
+            "Usage\r\n                  , NULL AS TagAndHoldClassID\r\n                  , NULL A" +
+            "S ContractBinID\r\n                  , NULL AS ContractNo\r\n                  , NUL" +
+            "L AS AllocationQty\r\n                  , NULL AS PromiseDate\r\n                  ," +
+            " NULL AS ResolveItemContract\r\n                  , NULL AS Sample\r\n              " +
+            "    , NULL AS QuoteLineNo\r\n                  , NULL AS QuoteComplete\r\n          " +
+            "        , NULL AS ItemDescription\t-- Not in P21 template, but in import file\r\n  " +
+            "                FROM (SELECT ROW_NUMBER() OVER (ORDER BY h.INVNBR, h.INVSEQ) AS " +
+            "ImportSet\r\n                  , h.INVNBR\r\n                  , h.INVSEQ\r\n         " +
+            "         FROM SOM_SomShipmentHeader h\r\n                  WHERE h.INVTYP = \'IV\') " +
+            "tmp\r\n                  INNER JOIN SOM_SomShipmentDetail d\r\n                  ON " +
+            "tmp.INVNBR = d.INVNBR\r\n                  AND tmp.INVSEQ = d.INVSEQ\r\n            " +
+            "      INNER JOIN inv_mast m\r\n                  ON m.item_id = d.itmmdl\r\n        " +
+            "          INNER JOIN inv_loc l\r\n                  ON m.inv_mast_uid = l.inv_mast" +
+            "_uid and l.location_id = \'10\'\r\n                  WHERE ImportSet = ?\r\n          " +
+            "        UNION ALL\r\n                  -- Select the SO Line Special Charges File\r" +
+            "\n                  SELECT tmp.ImportSet AS ImportSet\r\n                  , tmp.IN" +
+            "VNBR\t-- Testing\r\n                  , hs.ROWNBR + 9000000 AS LineID\r\n            " +
+            "      , CASE hs.SPCCHGID\r\n                  WHEN \'800\' THEN \'FREIGHT\'\r\n         " +
+            "         WHEN \'801\' THEN \'RESTOCKING FEE\'\r\n                  WHEN \'803\' THEN \'FR" +
+            "EIGHT EXCHANGES\'\r\n                  WHEN \'804\' THEN \'TAXABLE FREIGHT\'\r\n         " +
+            "         WHEN \'805\' THEN \'FINANCE CHARGE\'\r\n                  WHEN \'806\' THEN \'LA" +
+            "BOR CHARGE\'\r\n                  WHEN \'807\' THEN \'TAXABLE LABOR/INSTALL\'\r\n        " +
+            "          ELSE hs.SPCCHGID\r\n                  END AS ItemID\r\n                  ," +
+            " 1 AS UnitQuantity\r\n                  , \'EA\' AS UnitOfMeasure\r\n                 " +
+            " , hs.SPCCHGAMT AS UnitPrice\r\n                  , NULL AS ExtendedDescription\r\n " +
+            "                 , IIF((d.WHS = \'OHT\' or d.WHS = \'ILT\'), \'10\', \'10224\') AS Sourc" +
+            "eLocationID\r\n                  , IIF((d.WHS = \'OHT\' or d.WHS = \'ILT\'), \'10\', \'10" +
+            "224\') AS ShipLocationID\r\n                  , NULL AS ProductGroupID\r\n           " +
+            "       , NULL AS SupplierID\r\n                  , NULL AS SupplierName\r\n         " +
+            "         , NULL AS RequiredDate\r\n                  , NULL AS ExpediteDate\r\n     " +
+            "             , NULL AS WillCall\r\n                  , IIF(LEN(RTRIM(hs.TAXID)) > " +
+            "1,\'Y\',\'N\') AS TaxItem\r\n\t, NULL AS OKToInterchange\r\n\t, \'EA\' AS PricingUnit\r\n\t, NU" +
+            "LL AS CommissionCost\r\n\t, NULL AS OtherCost\r\n\t, NULL AS POCost\r\n\t, NULL AS Dispos" +
+            "ition\r\n\t, \'N\' AS Scheduled\r\n\t, \'Y\' AS ManualPriceOverride\r\n\t, \'N\' AS CommissionC" +
+            "ostEdited\r\n\t, \'N\' AS OtherCostEdited\r\n\t, NULL AS CaptureUsage\r\n\t, NULL AS TagAnd" +
+            "HoldClassID\r\n\t, NULL AS ContractBinID\r\n\t, NULL AS ContractNo\r\n\t, NULL AS Allocat" +
+            "ionQty\r\n\t, NULL AS PromiseDate\r\n\t, NULL AS ResolveItemContract\r\n\t, NULL AS Sampl" +
+            "e\r\n\t, NULL AS QuoteLineNo\r\n\t, NULL AS QuoteComplete\r\n\t, NULL AS ItemDescription\t" +
+            "-- Not in P21 template, but in import file\r\nFROM (SELECT ROW_NUMBER() OVER (ORDE" +
+            "R BY h.INVNBR, h.INVSEQ) AS ImportSet\r\n\t, h.INVNBR\r\n\t, h.INVSEQ\r\n\tFROM SOM_SomSh" +
+            "ipmentHeader h\r\n                WHERE h.INVTYP = \'IV\') tmp\r\nINNER JOIN SOM_SomSh" +
+            "ipmentHeaderSpecialCharges hs\r\n\tON tmp.INVNBR = hs.INVNBR\r\nCROSS APPLY (\r\n\tSELEC" +
+            "T TOP 1 WHS\r\n\tFROM SOM_SomShipmentDetail sd\r\n\tWHERE tmp.INVNBR = sd.INVNBR \r\n\t) " +
+            "d\r\n--Order by ImportSet\r\nwhere ImportSet = ?")]
+        public string SqlQueryLines {
+            get {
+                return ((string)(this["SqlQueryLines"]));
+            }
+            set {
+                this["SqlQueryLines"] = value;
             }
         }
     }

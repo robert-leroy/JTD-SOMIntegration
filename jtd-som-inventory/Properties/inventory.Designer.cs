@@ -12,7 +12,7 @@ namespace jtd_som_inventory.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class inventory : global::System.Configuration.ApplicationSettingsBase {
         
         private static inventory defaultInstance = ((inventory)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new inventory())));
@@ -25,26 +25,27 @@ namespace jtd_som_inventory.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"-- Select the Inventory Adjustment Serial File
-SELECT tmp.ImportSet AS ImportSet
-	, tmp.ItemID AS ItemID
-	, RTRIM(s.SRLNBR) As SerialNumber
-	, 0 AS DimensionID
-FROM (SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
-	, d.INVNBR
-	, d.INVSEQ
-	, d.INVDTLSEQ
-	, RTRIM(d.ITMMDL) AS ItemID
-	, d.SHPQTY AS AdjAmount
-	, NULL AS NewQtyOnHand
-	, d.ORDUOM AS UnitOfMeasure
-	, d.UNTCST AS Cost
-	, 0 AS Revision
-FROM SOM_SomShipmentDetail d JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
-JOIN inv_mast i on d.ITMMDL = i.item_id
-WHERE h.INVTYP = 'IV' AND d.WHS = 'OHT') tmp
-JOIN SOM_SomShipmentSerial s on tmp.invnbr = s.invnbr and tmp.invseq = s.invseq and tmp.invdtlseq = s.invdtlseq
-WHERE ImportSet = ? AND ItemID = #")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+        -- Select the Inventory Adjustment Serial File
+        SELECT tmp.ImportSet AS ImportSet
+        , tmp.ItemID AS ItemID
+        , RTRIM(s.SRLNBR) As SerialNumber
+        , 0 AS DimensionID
+        FROM (SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
+        , d.INVNBR
+        , d.INVSEQ
+        , d.INVDTLSEQ
+        , RTRIM(d.ITMMDL) AS ItemID
+        , d.SHPQTY AS AdjAmount
+        , NULL AS NewQtyOnHand
+        , d.ORDUOM AS UnitOfMeasure
+        , d.UNTCST AS Cost
+        , 0 AS Revision
+        FROM SOM_SomShipmentDetail d JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
+        JOIN inv_mast i on d.ITMMDL = i.item_id
+        WHERE h.INVTYP = 'IV' AND (d.WHS = 'OHT' or d.WHS = 'ILT')) tmp
+        JOIN SOM_SomShipmentSerial s on tmp.invnbr = s.invnbr and tmp.invseq = s.invseq and tmp.invdtlseq = s.invdtlseq
+        WHERE ImportSet = ? AND ItemID = #")]
         public string SqlQuerySerialLine {
             get {
                 return ((string)(this["SqlQuerySerialLine"]));
@@ -56,21 +57,23 @@ WHERE ImportSet = ? AND ItemID = #")]
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"-- Select the Inventory Adjustment Item File
-SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
-	, RTRIM(d.ITMMDL) AS ItemID
-	, d.SHPQTY AS AdjAmount
-	, NULL AS NewQtyOnHand
-	, IIF(d.WHS <> 'OHT', '10224', '10') AS SourceLocationID
-	, IIF(d.WHS <> 'OHT', '10224', '10') AS ShipLocationID
-	, d.ORDUOM AS UnitOfMeasure
-	, d.UNTCST AS Cost
-	, 0 AS Revision
-FROM SOM_SomShipmentDetail d
-JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
-JOIN inv_mast i on d.ITMMDL = i.item_id
-WHERE h.INVTYP = 'IV'
-AND d.WHS = 'OHT'")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+        -- Select the Inventory Adjustment Item File
+        SELECT ROW_NUMBER() OVER (ORDER BY d.INVNBR, d.INVSEQ, d.INVDTLSEQ) AS ImportSet
+        , RTRIM(d.ITMMDL) AS ItemID
+        , d.SHPQTY AS AdjAmount
+        , NULL AS NewQtyOnHand
+        , IIF((d.WHS = 'OHT' or d.WHS = 'ILT'), '10', '10224') AS SourceLocationID
+        , IIF((d.WHS = 'OHT' or d.WHS = 'ILT'), '10', '10224') AS ShipLocationID
+        , d.ORDUOM AS UnitOfMeasure
+        , d.UNTCST AS Cost
+        , 0 AS Revision
+        FROM SOM_SomShipmentDetail d
+        JOIN SOM_SomShipmentHeader h ON h.INVNBR = d.INVNBR AND h.INVSEQ = d.INVSEQ
+        JOIN inv_mast i on d.ITMMDL = i.item_id
+        WHERE h.INVTYP = 'IV'
+        AND (d.WHS = 'OHT' or d.WHS = 'ILT')
+      ")]
         public string SqlQueryGetInventory {
             get {
                 return ((string)(this["SqlQueryGetInventory"]));

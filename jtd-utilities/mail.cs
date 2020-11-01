@@ -75,8 +75,8 @@ namespace jtd_utilities
             Message.Body += "    * Holly Ellis @ 513.339.0990 or holly@jtdinc.com\r\n";
             Message.Body += "\r\n";
             Message.Body += "\r\n";
-            Attachment csvAttachment = new Attachment(@".\\TisdelSpiff.txt");
-            Message.Attachments.Add(csvAttachment);
+            Attachment xlAttachment = new Attachment(@"C:\\SISM\\TisdelSpiff.xlsx");
+            Message.Attachments.Add(xlAttachment);
 
             //-- Define Authenticated User
             SmtpUser.UserName = Properties.sql.Default.MailUsername;

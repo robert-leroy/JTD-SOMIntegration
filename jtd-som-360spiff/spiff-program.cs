@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using jtd_utilities;
+using ClosedXML.Excel;
 
 namespace jtd_som_360spiff
 {
@@ -26,11 +27,10 @@ namespace jtd_som_360spiff
             totalLines = dsHeaders.Rows.Count;
 
             // Write to File
-            String csvContents = BuildCSV(dsHeaders);
-            System.IO.File.WriteAllText(@"./TisdelSpiff.txt", csvContents);
+            BuildExcel(dsHeaders);
 
             // Send the message
-            jtd_utilities.mail.SpiffEmailMessage("The export completed with " + totalLines.ToString() + " serial number(s). \r\n");
+           jtd_utilities.mail.SpiffEmailMessage("The export completed with " + totalLines.ToString() + " serial number(s). \r\n");
 
             return;
         } 
@@ -43,33 +43,41 @@ namespace jtd_som_360spiff
             return dt;
         }
 
-        static String BuildCSV(DataTable dt)
+        static void BuildExcel(DataTable dt)
         {
             //Build the CSV file data as a Comma separated string.
             string csv = string.Empty;
 
+            var workbook = new XLWorkbook();
+            var ws = workbook.Worksheets.Add("Tisdel");
+
+            int row = 1;
+            int col = 1;
+            var rowFromWorksheet = ws.Row(row++);
+
             foreach (DataColumn column in dt.Columns)
             {
-                //Add the Header row for CSV file.
-                csv += column.ColumnName + ',';
+                rowFromWorksheet.Cell(col++).Value = column.ColumnName;
+                       
             }
 
-            //Add new line.
-            csv += "\r\n";
-
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow datarow in dt.Rows)
             {
+                rowFromWorksheet = ws.Row(row++);
+                col = 1;
+
                 foreach (DataColumn column in dt.Columns)
                 {
-                    //Add the Data rows.
-                    csv += row[column.ColumnName].ToString().Replace(",", ";") + ',';
+                    if (col == 4)
+                        rowFromWorksheet.Cell(col++).Value = "'" + datarow[column.ColumnName].ToString();
+                    else 
+                        rowFromWorksheet.Cell(col++).Value = datarow[column.ColumnName].ToString();
                 }
-
-                //Add new line.
-                csv += "\r\n";
             }
 
-            return (csv);
+            workbook.SaveAs(@"C:\\SISM\\TisdelSpiff.xlsx"); ;
+
+            return;
 
         }
     }

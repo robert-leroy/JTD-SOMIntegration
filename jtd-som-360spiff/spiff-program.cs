@@ -30,13 +30,17 @@ namespace jtd_som_360spiff
             BuildExcel(dsHeaders);
 
             // Send the message
-           jtd_utilities.mail.SpiffEmailMessage("The export completed with " + totalLines.ToString() + " serial number(s). \r\n");
+           //jtd_utilities.mail.SpiffEmailMessage("The export completed with " + totalLines.ToString() + " serial number(s). \r\n");
 
             return;
         } 
         static DataTable SqlGetSerialList()
         {
             SqlCommand cmd = new SqlCommand(Properties.Settings.Default.SqlQuery, SQL.cnnSQL);
+            cmd.Parameters.Add("@INVDATE", SqlDbType.Date);
+            cmd.Parameters["@INVDATE"].Value = DateTime.Now.Date;
+            //cmd.Parameters["@INVDATE"].Value = Convert.ToDateTime("October 30, 2020");
+
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);

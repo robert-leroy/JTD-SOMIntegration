@@ -22,5 +22,8 @@ WHERE CONVERT(date, ih.invoice_date) = @INVDATE
 
 </Value>
     </Setting>
+    <Setting Name="InvoiceDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -51,5 +51,17 @@ WHERE CONVERT(date, ih.invoice_date) = @INVDATE
                 this["SqlQuery"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string InvoiceDate {
+            get {
+                return ((string)(this["InvoiceDate"]));
+            }
+            set {
+                this["InvoiceDate"] = value;
+            }
+        }
     }
 }
